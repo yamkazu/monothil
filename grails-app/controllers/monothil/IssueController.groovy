@@ -10,17 +10,12 @@ class IssueController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
-    def index() {
-        respond view: 'index'
-    }
-
-    @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
     def secret(String guid) {
         println "SECRET!!: ${guid}"
         respond view: 'show'
     }
 
-    def list(Integer max) {
+    def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Issue.list(params), model: [issueCount: Issue.count()]
     }
