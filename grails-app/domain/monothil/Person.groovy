@@ -1,5 +1,7 @@
 package monothil
 
+import org.apache.commons.lang.RandomStringUtils
+
 /**
  * Domain class for a person.
  */
@@ -9,6 +11,8 @@ class Person {
 
     String username
     String password
+
+    String salt
 
     final boolean enabled = true
     final boolean accountExpired = false
@@ -22,14 +26,22 @@ class Person {
     static constraints = {
         username blank: false, unique: true
         password blank: false
+        salt blank: false, bindable: false
     }
 
     static mapping = {
         password column: "`password`"
+        salt updateable: false
     }
 
     Set<Role> getAuthorities() {
         roles
+    }
+
+    def beforeValidate() {
+        if (!salt) {
+            salt = RandomStringUtils.randomAlphanumeric(20)
+        }
     }
 
     def beforeInsert() {
@@ -43,6 +55,6 @@ class Person {
     }
 
     protected void encodePassword() {
-        password = springSecurityService?.passwordEncoder ? springSecurityService.encodePassword(password) : password
+        password = springSecurityService.encodePassword(password, salt)
     }
 }
