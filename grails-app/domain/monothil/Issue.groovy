@@ -11,6 +11,7 @@ class Issue {
     String assignee
     Date dueDate
     Date dateCreated
+    Date lastUpdated
 
     static hasMany = [messages: Message]
 
@@ -22,5 +23,6 @@ class Issue {
         assignee blank: false
         dueDate()
         dateCreated()
+        lastUpdated()
     }
 }
