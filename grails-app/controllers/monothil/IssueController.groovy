@@ -9,7 +9,7 @@ class IssueController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
+    @Secured(["permitAll"])
     def secret(String guid) {
         println "SECRET!!: ${guid}"
         respond view: 'show'
@@ -24,12 +24,12 @@ class IssueController {
         respond issue
     }
 
-    @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
+    @Secured(["permitAll"])
     def create() {
         respond new Issue(params)
     }
 
-    @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
+    @Secured(["permitAll"])
     @Transactional
     def save(Issue issue) {
         if (issue == null) {
