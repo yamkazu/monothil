@@ -1,9 +1,18 @@
+import grails.plugin.fixtures.FixtureLoader
 import monothil.Role
 
 class BootStrap {
 
+    FixtureLoader fixtureLoader
+
     def init = { servletContext ->
         setupRole()
+
+        environments {
+            development {
+                fixtureLoader.load("development/*")
+            }
+        }
     }
 
     def destroy = {
