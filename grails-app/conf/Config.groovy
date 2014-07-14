@@ -115,3 +115,11 @@ log4j.main = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'monothil.Person'
+grails.plugin.springsecurity.authority.className = 'monothil.Role'
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+        '/assets/**': ['permitAll'],
+        '/**'       : ['denyAll']
+]
