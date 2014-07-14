@@ -1,13 +1,16 @@
 package monothil
 
+import grails.compiler.GrailsCompileStatic
+import grails.plugin.springsecurity.SpringSecurityService
 import org.apache.commons.lang.RandomStringUtils
 
 /**
  * Domain class for a person.
  */
+@GrailsCompileStatic
 class Person {
 
-    transient springSecurityService
+    SpringSecurityService springSecurityService
 
     String username
     String password

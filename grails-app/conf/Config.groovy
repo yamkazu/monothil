@@ -123,3 +123,12 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/assets/**': ['permitAll'],
         '/**'       : ['denyAll']
 ]
+environments {
+    development {
+        grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+                '/dbconsole/**': ['permitAll'],
+                '/assets/**'   : ['permitAll'],
+                '/**'          : ['denyAll']
+        ]
+    }
+}

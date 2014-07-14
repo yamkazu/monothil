@@ -1,8 +1,11 @@
 package monothil
 
+import grails.compiler.GrailsCompileStatic
+
 /**
  * Domain class for a role.
  */
+@GrailsCompileStatic
 class Role {
 
     static final String ROLE_ADMIN = "ROLE_ADMIN"
