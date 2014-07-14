@@ -4,6 +4,7 @@ import static org.springframework.http.HttpStatus.*
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
+@Secured(["hasRole('ROLE_EXPERT')"])
 @Transactional(readOnly = true)
 class IssueController {
 
