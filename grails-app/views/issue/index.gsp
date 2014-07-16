@@ -22,23 +22,23 @@
             <table>
                 <thead>
                     <tr>
-                        <g:sortableColumn property="subject" title="${message(code: 'issue.subject.label', default: 'Subject')}" />
-                        <g:sortableColumn property="description" title="${message(code: 'issue.description.label', default: 'Description')}" />
-                        <g:sortableColumn property="issuerName" title="${message(code: 'issue.issuerName.label', default: 'Issuer Name')}" />
-                        <g:sortableColumn property="issuerEmail" title="${message(code: 'issue.issuerEmail.label', default: 'Issuer Email')}" />
-                        <g:sortableColumn property="assignee" title="${message(code: 'issue.assignee.label', default: 'Assignee')}" />
-                        <g:sortableColumn property="dueDate" title="${message(code: 'issue.dueDate.label', default: 'Due Date')}" />
+                        <g:sortableColumn property="subject" title="${message(code: 'issue.subject.label')}" />
+                        <g:sortableColumn property="issuerName" title="${message(code: 'issue.issuerName.label')}" />
+                        <g:sortableColumn property="assignee" title="${message(code: 'issue.assignee.label')}" />
+                        <g:sortableColumn property="dueDate" title="${message(code: 'issue.dueDate.label')}" />
+                        <g:sortableColumn property="dateCreated" title="${message(code: 'issue.dateCreated.label')}" />
+                        <g:sortableColumn property="lastUpdated" title="${message(code: 'issue.lastUpdated.label')}" />
                     </tr>
                 </thead>
                 <tbody>
                 <g:each in="${issueList}" status="i" var="issue">
                     <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                         <td><g:link action="show" id="${issue.id}">${fieldValue(bean: issue, field: "subject")}</g:link></td>
-                        <td>${fieldValue(bean: issue, field: "description")}</td>
                         <td>${fieldValue(bean: issue, field: "issuerName")}</td>
-                        <td>${fieldValue(bean: issue, field: "issuerEmail")}</td>
-                        <td>${fieldValue(bean: issue, field: "assignee")}</td>
-                        <td><g:formatDate date="${issue.dueDate}" /></td>
+                        <td>${fieldValue(bean: issue, field: "assignee") ?: message(code: 'issue.assignee.null')}</td>
+                        <td>${formatDate(date:issue.dueDate)  ?: message(code: 'issue.dueDate.null')}</td>
+                      <td><g:formatDate date="${issue.dateCreated}" /></td>
+                      <td><g:formatDate date="${issue.lastUpdated}" /></td>
                     </tr>
                 </g:each>
                 </tbody>
