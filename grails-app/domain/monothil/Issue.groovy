@@ -1,5 +1,7 @@
 package monothil
 
+import org.grails.databinding.BindingFormat
+
 /**
  * A question, an inquiry or a trouble.
  */
@@ -9,6 +11,7 @@ class Issue {
     String issuerName
     String issuerEmail
     String assignee
+    @BindingFormat("yyyy/MM/dd")
     Date dueDate
     Date dateCreated
     Date lastUpdated
