@@ -598,3 +598,8 @@ a.skip {
 ul {
     padding-left: 5em;
 }
+
+.fieldcontain .caption {
+    margin-left: 1em;
+    color: #999;
+}
