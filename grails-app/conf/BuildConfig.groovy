@@ -44,6 +44,8 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
+        mavenRepo "http://repository-kobo.forge.cloudbees.com/snapshot/"
+        mavenRepo "http://repository-kobo.forge.cloudbees.com/release/"
     }
 
     dependencies {
@@ -75,5 +77,9 @@ grails.project.dependency.resolution = {
         //compile ":less-asset-pipeline:1.7.0"
         //compile ":coffee-asset-pipeline:1.7.0"
         //compile ":handlebars-asset-pipeline:1.3.0.3"
+
+        if (Environment.current == Environment.DEVELOPMENT) {
+            compile "org.jggug.kobo:request-tracelog:0.2"
+        }
     }
 }
