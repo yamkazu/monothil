@@ -10,7 +10,7 @@ class Issue {
     String description
     String issuerName
     String issuerEmail
-    String assignee
+    Person assignee
     @BindingFormat("yyyy/MM/dd")
     Date dueDate
     Date dateCreated
