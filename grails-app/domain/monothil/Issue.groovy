@@ -20,8 +20,8 @@ class Issue {
         description blank: false
         issuerName blank: false
         issuerEmail blank: false, email: true
-        assignee blank: false
-        dueDate()
+        assignee nullable: true, blank: false
+        dueDate nullable: true
         dateCreated()
         lastUpdated()
     }
