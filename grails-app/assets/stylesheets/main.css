@@ -598,3 +598,17 @@ a.skip {
 ul {
     padding-left: 5em;
 }
+
+.fieldcontain .caption {
+    margin-left: 1em;
+    color: #999;
+}
+
+.fieldcontain input[name="subject"] {
+    width: 70%;
+}
+
+.fieldcontain textArea {
+    width: 70%;
+    height: 20em;
+}

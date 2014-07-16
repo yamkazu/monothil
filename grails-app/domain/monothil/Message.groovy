@@ -9,8 +9,8 @@ class Message {
     Date dateCreated
 
     static constraints = {
-        name blank: false
-        text blank: false
+        name blank: false, maxSize: 100
+        text blank: false, maxSize: 5000
         dateCreated()
     }
 }

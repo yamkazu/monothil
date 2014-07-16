@@ -1,8 +1,9 @@
 package monothil
 
-import static org.springframework.http.HttpStatus.*
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
+
+import static org.springframework.http.HttpStatus.*
 
 @Secured(["hasRole('ROLE_EXPERT')"])
 @Transactional(readOnly = true)
