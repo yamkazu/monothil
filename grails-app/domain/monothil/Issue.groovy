@@ -19,11 +19,11 @@ class Issue {
     static hasMany = [messages: Message]
 
     static constraints = {
-        subject blank: false
-        description blank: false
-        issuerName blank: false
-        issuerEmail blank: false, email: true
-        assignee nullable: true, blank: false
+        subject blank: false, maxSize: 100
+        description blank: false, maxSize: 5000
+        issuerName blank: false, maxSize: 100
+        issuerEmail blank: false, email: true, maxSize: 100
+        assignee nullable: true, blank: false, bindable: false
         dueDate nullable: true
         dateCreated()
         lastUpdated()
