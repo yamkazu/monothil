@@ -1,27 +1,22 @@
 package monothil
 
+import static org.springframework.http.HttpStatus.*
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
-import static org.springframework.http.HttpStatus.*
-
+@Secured(["hasRole('ROLE_EXPERT')"])
 @Transactional(readOnly = true)
 class IssueController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
-    def index() {
-        respond view: 'index'
-    }
-
-    @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
+    @Secured(["permitAll"])
     def secret(String guid) {
         println "SECRET!!: ${guid}"
         respond view: 'show'
     }
 
-    def list(Integer max) {
+    def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Issue.list(params), model: [issueCount: Issue.count()]
     }
@@ -30,12 +25,12 @@ class IssueController {
         respond issue
     }
 
-    @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
+    @Secured(["permitAll"])
     def create() {
         respond new Issue(params)
     }
 
-    @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
+    @Secured(["permitAll"])
     @Transactional
     def save(Issue issue) {
         if (issue == null) {
