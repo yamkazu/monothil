@@ -1,23 +1,36 @@
 gulp = require 'gulp'
+clean = require 'gulp-clean'
 bowerFiles = require 'main-bower-files'
 typescript = require 'gulp-tsc'
 
 paths = {
   scripts: 'src/typescript/**/*.ts'
-  dest: 'grails-app/assets/javascripts'
+  dest: 'grails-app/assets/compiled-javascripts'
   vendorDest: 'grails-app/assets/vendor'
 }
 
-gulp.task 'default', ['watch']
+gulp.task 'default', ['build']
 
-gulp.task 'bower', ->
+gulp.task 'copy-dependencies', ['clean-dependencies'], ->
   gulp.src bowerFiles()
     .pipe(gulp.dest paths.vendorDest)
 
-gulp.task 'compile', ->
+gulp.task 'clean-dependencies', ->
+  gulp.src(paths.vendorDest, { read: false })
+    .pipe(clean())
+
+gulp.task 'compile', ['clean'], ->
   gulp.src paths.scripts
-    .pipe(typescript { emitError: false })
+    .pipe(typescript { emitError: false, noImplicitAny: true })
     .pipe(gulp.dest paths.dest)
 
+gulp.task 'clean', ->
+  gulp.src(paths.dest, { read: false })
+    .pipe(clean())
+
 gulp.task 'watch', ->
-  gulp.watch paths.scripts, ['compile']
+  gulp.run('build')
+  gulp.watch(paths.scripts, ['compile'])
+  gulp.watch('bower.json', ['copy-dependencies'])
+
+gulp.task 'build', ['compile', 'copy-dependencies']

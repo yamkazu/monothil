@@ -46,3 +46,10 @@ node_modules/
 
 # Bower
 bower_components/
+
+# TSD
+src/typescript/typings/
+
+# App
+grails-app/assets/compiled-javascripts/
+grails-app/assets/vendor/
